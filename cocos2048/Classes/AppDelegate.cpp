@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "MainScene.h"
+#include "Games.h"
 
 USING_NS_CC;
 
@@ -27,11 +28,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::createWithRect("cocos2048", Rect(0, 0, 960, 640));
+        glview = GLViewImpl::createWithRect("cocos2048", Rect(0, 0, GAME_SCREEN_WIDTH, GAME_SCREEN_HIGH));
         director->setOpenGLView(glview);
     }
 
-    director->getOpenGLView()->setDesignResolutionSize(960, 640, ResolutionPolicy::SHOW_ALL);
+    director->getOpenGLView()->setDesignResolutionSize(GAME_SCREEN_WIDTH, GAME_SCREEN_HIGH, ResolutionPolicy::SHOW_ALL);
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -42,7 +43,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("res");
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    auto scene = MainScene::createScene();
 
     // run
     director->runWithScene(scene);
